@@ -1,0 +1,32 @@
+---
+
+---
+
+<header>
+    <a href="/" is-="badge">Index</a>
+    <button id="view-btn" size-="small">View</button>
+    <button id="files2-btn" size-="small">Files</button>
+</header>
+
+<style>
+    header {
+        display: flex;
+        background-color: var(--foreground0);
+
+        a {
+            text-decoration: none;
+        }
+
+        [is-~="badge"]:hover,
+        [is-~="badge"]:focus {
+            --badge-text: var(--foreground0);
+            --badge-color: var(--background2);
+        }
+
+        button:hover,
+        button:focus {
+            --button-primary: var(--background2);
+            --button-secondary: var(--foreground0);
+        }
+    }
+</style>

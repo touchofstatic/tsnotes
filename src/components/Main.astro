@@ -1,0 +1,53 @@
+---
+// Usage: <Item title="# /dir/title" />
+const { path } = Astro.props;
+import "../styles/main.css";
+---
+
+<main box-="square" shear-="top" class="box open column">
+    <!-- badge -->
+    <span is-="badge" variant-="background0">
+        <h1>{path}</h1>
+    </span>
+
+    <!-- below badge -->
+    <div id="main-content">
+        <!-- 4. index.astro arrives here -->
+        <slot />
+    </div>
+    <!-- there's no reason for anything to be here -->
+</main>
+
+<style>
+    main {
+        /* main resizes to take up all remaining space */
+        width: 100%;
+        /* keep red content inside box aligned with sidebar */
+        padding-bottom: 2lh;
+        /* pulls up the box border*/
+        height: 94vh;
+    }
+
+    #main-content {
+        /* all text blocks are flex items with a gap. very simple and controllable! */
+        display: flex;
+        flex-direction: column;
+        gap: 1lh;
+
+        /* THIS IS WHAT RESOLVES CONFLICT BETWEEN TOC AND MAIN COMMENTED OUT OVERFLOW in the long word error scenario */
+        /* DO NOT REMOVE!!!!!!!!!!!!! */
+        word-break: break-word;
+
+        /* overflow-y gives red bar scroll and keeps bottom text inside red box */
+        /* DO NOT REMOVE!!!!!! */
+        overflow-y: auto;
+
+        /* visual */
+        padding: 2ch;
+        /* not sure what it does */
+        text-wrap: wrap;
+
+        /* red's height matches green parent rather than its own content */
+        height: 100%;
+    }
+</style>

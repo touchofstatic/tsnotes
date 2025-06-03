@@ -1,0 +1,81 @@
+---
+import Header from "../components/Header.astro";
+import Files from "../components/Files.astro";
+import Main from "../components/Main.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import View from "../components/View.astro";
+import Files2 from "../components/Files2.astro";
+
+import "../styles/global.css";
+
+const { path } = Astro.props;
+// markdown file headings float up
+const { headings } = Astro.props;
+---
+
+<html data-webtui-theme="gruvbox-dark-hard">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+    </head>
+
+    <body>
+        <div class="gl-outer">
+            <Header />
+            <div class="gl-columns">
+                <Files />
+                <Files2 />
+
+                <!-- 5. render the completed Main component-->
+                <Main path={path}>
+                    <!-- 2. index.astro arrives here -->
+                    <slot />
+                    <!-- 3. call Item on <Main>'s contents -->
+                    <!-- i.e index.astro -->
+                </Main>
+
+                <!-- if headings were received by global layout -->
+                <!-- i.e page contents were a markdown file -->
+                {headings && <TableOfContents headings={headings} />}
+                <View />
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    import "../scripts/open-tab.js";
+</script>
+
+<style>
+    body {
+        display: block;
+        /* remove outer horizontal scroll if too long word error */
+        overflow-x: hidden;
+    }
+
+    html,
+    body {
+        display: block;
+        /* if window resized too much vertically would create a window scroll bar */
+        overflow-y: hidden;
+    }
+
+    .gl-outer {
+        /* nav and content are vertical */
+        display: block;
+    }
+
+    .gl-columns {
+        /* but boxes are horizonal */
+        display: flex;
+
+        /* visual */
+        column-gap: 1ch;
+        row-gap: 1lh;
+        padding-left: 1ch;
+        padding-right: 1ch;
+    }
+</style>

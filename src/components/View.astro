@@ -1,0 +1,84 @@
+---
+import ThemeSelect from "./ThemeSelect.astro";
+import BorderSelect from "./BorderSelect.astro";
+import Disable from "./Disable.astro";
+---
+
+<Disable />
+<section box-="square" shear-="top" class="box closed" id="view">
+    <span is-="badge" variant-="background0">View</span>
+    <span is-="badge" variant-="background0" class="close">[x]</span>
+    <ThemeSelect />
+    <hr />
+    <BorderSelect />
+    <hr />
+    <button id="view-reset" size-="small">Reset</button>
+</section>
+
+<script>
+    const view = document.getElementById("view");
+    const viewBtn = document.getElementById("view-btn");
+    const viewClose = document.querySelector("section#view .close");
+    const viewReset = document.getElementById("view-reset");
+    const disable = document.querySelector(".disable");
+    const borderful = document.getElementById("borderful") as HTMLInputElement;
+
+    viewBtn?.addEventListener("click", () => {
+        view?.classList.toggle("closed");
+        view?.classList.toggle("open");
+
+        // <Disable />
+        disable?.classList.toggle("disabled");
+    });
+
+    viewClose?.addEventListener("click", function () {
+        view?.classList.toggle("closed");
+        view?.classList.toggle("open");
+
+        // <Disable />
+        disable?.classList.toggle("disabled");
+    });
+
+    viewReset?.addEventListener("click", () => {
+        // ez solution
+        localStorage.clear();
+        location.reload();
+        // document.getElementById("borderful").checked = true;
+        borderful.checked = true;
+    });
+</script>
+
+<style>
+    #view {
+        /* visual */
+        width: 35ch;
+        height: 19lh;
+        background-color: var(--background0);
+
+        position: absolute;
+        z-index: 10;
+        right: 2ch;
+    }
+
+    #view-reset {
+        margin-left: 1ch;
+        background-color: var(--foreground2);
+    }
+
+    /* from webtui docs css */
+    hr {
+        display: block;
+        padding: 0.5lh 0;
+        width: 100%;
+        border: none;
+        background-image: linear-gradient(
+            0deg,
+            transparent 0,
+            transparent calc(0.5lh - 1px),
+            var(--box-border-color) calc(0.5lh - 1px),
+            var(--box-border-color) calc(0.5lh + 1px),
+            transparent calc(0.5lh + 1px),
+            transparent
+        );
+    }
+</style>

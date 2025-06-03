@@ -1,0 +1,15 @@
+/* CSS of browse collname */
+
+.collname {
+    list-style-type: none;
+}
+
+.collname li::before {
+    content: "";
+}
+
+/* please do not break my stuff */
+.collname li a {
+    display: block;
+    width: 100%;
+}

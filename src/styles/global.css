@@ -1,0 +1,60 @@
+@layer base, utils, components;
+@import "@webtui/css";
+@import "@webtui/theme-gruvbox";
+@import '@webtui/theme-catppuccin';
+@import "@webtui/theme-nord";
+
+@layer base {
+    :root {
+        /* --font-size: 17px; */
+        --line-height: 1.2;
+    }
+}
+
+@layer components {
+    pre.astro-code {
+        /* webtui v0.1.1 broke code blocks idk */
+        background-color: linear-gradient(to bottom, transparent, transparent .5lh, var(--pre-background) .5lh, var(--pre-background) calc(100% - .5lh), transparent calc(100% - .5lh), transparent) !important;
+
+        padding: 1lh 1ch;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+
+        /* code from webtui docs */
+        /* idk what it does but otherwise main.css content display flex makes code block very short */
+        overflow: unset !important;
+
+        /* webtui v0.1.1 broke code blocks idk */
+        >* {
+            color: var(--foreground0);
+        }
+    }
+
+    /* move dir highlighter */
+    .move-dir:hover,
+    .move-dir:focus {
+        background-color: var(--background1);
+    }
+
+
+    .box {
+        --box-border-color: var(--foreground0);
+    }
+
+    .box.borderless {
+        --box-border-color: var(--background1);
+    }
+
+    /* [x] close button */
+    .closed {
+        display: none;
+    }
+
+    .open {
+        display: block;
+    }
+
+    .close {
+        float: right;
+    }
+}

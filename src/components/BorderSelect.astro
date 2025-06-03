@@ -1,0 +1,81 @@
+---
+
+---
+
+<section id="border-select">
+    <label>
+        <input
+            type="radio"
+            name="border-select"
+            id="borderless"
+            data-value="borderless"
+        />
+        Borderless
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="border-select"
+            id="borderful"
+            data-value="borderful"
+            checked
+        />
+        Borderful
+    </label>
+</section>
+
+<script is:inline>
+    const borderless = document.getElementById("borderless");
+    const borderful = document.getElementById("borderful");
+    const boxes = Array.from(document.getElementsByClassName("box"));
+
+    if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("border-style")
+    ) {
+        let borderStyle = localStorage.getItem("border-style");
+        if (borderStyle == "borderless") {
+            borderless.checked = true;
+            // set css here
+            boxes.forEach((box) => {
+                box.classList.add("borderless");
+            });
+        }
+        if (borderStyle == "borderful") {
+            borderless.checked = false;
+            // set css here
+            boxes.forEach((box) => {
+                box.classList.remove("borderless");
+            });
+        }
+    }
+
+    borderless.addEventListener("click", function () {
+        borderless.checked = true;
+
+        // set css here
+        boxes.forEach((box) => {
+            box.classList.add("borderless");
+        });
+
+        window.localStorage.setItem("border-style", "borderless");
+    });
+
+    borderful.addEventListener("click", function () {
+        borderless.checked = false;
+
+        // set css here
+        boxes.forEach((box) => {
+            box.classList.remove("borderless");
+        });
+
+        window.localStorage.setItem("border-style", "borderful");
+    });
+</script>
+
+<style>
+    #border-select {
+        text-align: center;
+    }
+</style>

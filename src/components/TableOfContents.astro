@@ -1,0 +1,107 @@
+---
+// headings destination from browse mdx page: [id].astro
+const { headings } = Astro.props;
+import "../styles/tableofcontents.css";
+---
+
+<aside box-="square" shear-="top" class="box open column" id="toc">
+    <span is-="badge" variant-="background0">Table of Contents</span>
+
+    <div id="toc-inside">
+        <ul>
+            {
+                headings.map((heading: any) => (
+                    <li class="toc-link">
+                        <a
+                            href={`#${heading.slug}`}
+                            class={`toc-h${heading.depth}`}
+                        >
+                            {heading.text}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</aside>
+
+<style>
+    /* - LAYOUT - */
+    span {
+        /* limit too long badge */
+        /* badge 3ch narrower than aside container */
+        overflow-x: hidden;
+        max-width: 32ch;
+    }
+
+    #toc {
+        /* fixed container width */
+        width: 35ch;
+        /* keep red content inside box aligned with article */
+        padding-bottom: 3lh;
+        /* pulls up the box border */
+        height: 94vh;
+    }
+
+    #toc-inside {
+        /* overflow-y gives red bar scroll and keeps bottom text inside red box */
+        overflow-y: auto;
+
+        /* visual */
+        padding-left: 1ch;
+        padding-right: 2ch;
+
+        margin-top: 1lh;
+        /* content 2ch narrower than container */
+        width: 33ch;
+
+        /* red's height matches green parent rather than its own content */
+        height: 100%;
+    }
+
+    @media screen and (max-width: 110ch) {
+        aside {
+            display: none;
+        }
+    }
+
+    /* - STYLING LINKS - */
+    #toc-inside a {
+        /* content: ""; */
+        text-decoration: none;
+    }
+
+    #toc-inside a:hover {
+        text-decoration: underline;
+    }
+
+    #toc-inside ul li::before {
+        content: "";
+    }
+
+    .toc-h2::before {
+        content: "##";
+    }
+
+    .toc-h3::before {
+        content: "###";
+        margin-left: 2ch;
+    }
+
+    .toc-h4::before {
+        content: "####";
+        margin-left: 4ch;
+
+    }
+
+    .toc-h5::before {
+        content: "#####";
+        margin-left: 6ch;
+
+    }
+
+    .toc-h6::before {
+        content: "######";
+        margin-left: 8ch;
+    }
+</style>

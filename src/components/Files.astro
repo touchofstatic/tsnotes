@@ -1,0 +1,77 @@
+---
+
+---
+
+<aside box-="square" shear-="top" class="box open column" id="files">
+    <span is-="badge" variant-="background0">Files</span>
+
+    <div id="files-inside">
+        <summary>notes</summary>
+        <ul marker-="open tree">
+            <li class="move-dir"><a href="/notes/undefined/">Undefined</a></li>
+            <li class="move-dir"><a href="/notes/html/">HTML</a></li>
+            <li class="move-dir"><a href="/notes/css/">CSS</a></li>
+            <li class="move-dir"><a href="/notes/js/">JS</a></li>
+            <li class="move-dir"><a href="/notes/astro/">Astro</a></li>
+            <li class="move-dir"><a href="/notes/github/">Github</a></li>
+        </ul>
+
+        <br />
+        <summary>resources</summary>
+        <ul marker-="open tree">
+            <li class="move-dir"><a href="/resources/undefined/">Undefined</a></li>
+            <li class="move-dir"><a href="/resources/tools/">Tools</a></li>
+            <li class="move-dir"><a href="/resources/curios/">Curios</a></li>
+        </ul>
+
+        <br />
+        <summary>study</summary>
+        <ul marker-="open tree">
+            <li class="move-dir"><a href="/study/classes/">Classes</a></li>
+            <li class="move-dir"><a href="/study/lessons/">Lessons</a></li>
+        </ul>
+    </div>
+</aside>
+
+<style>
+    span {
+        /* limit too long badge. badge 3ch narrower than files container */
+        overflow-x: hidden;
+        max-width: 16ch;
+    }
+
+    #files {
+        /* fixed container width */
+        width: 19ch;
+        /* keep red content inside box aligned with main */
+        padding-bottom: 3lh;
+        /* pulls up the box border */
+        height: 94vh;
+    }
+
+    /* hide sidebar when the window is narrow */
+    @media screen and (max-width: 70ch) {
+        aside {
+            display: none;
+        }
+    }
+
+    #files-inside {
+        /* overflow-y gives red bar scroll and keeps bottom text inside red box */
+        overflow-y: auto;
+        /* visual */
+        padding-left: 1ch;
+        padding-right: 2ch;
+
+        margin-top: 1lh;
+        /* content 2ch narrower than aside container */
+        width: 17ch;
+        /* red's height matches green parent rather than its own content */
+        height: 100%;
+    }
+
+    #files-inside li a {
+        display: inline-block;
+        width: calc(100% - 2ch);
+    }
+</style>

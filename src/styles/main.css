@@ -1,0 +1,120 @@
+/* CSS of main content */
+@layer base, utils, components;
+@import "@webtui/css";
+
+@layer components {
+
+    /* GRUVBOX */
+    [data-webtui-theme|="gruvbox"] {
+        #main-content .alert {
+            --badge-color: var(--gb-red);
+            --badge-text: var(--background0);
+        }
+
+        #main-content .caution {
+            --badge-color: var(--gb-yellow);
+            --badge-text: var(--background0);
+        }
+
+        #main-content .advice {
+            --badge-color: var(--gb-green);
+            --badge-text: var(--background0);
+        }
+    }
+
+    [data-webtui-theme^="gruvbox-dark-"] {
+
+        #main-content p code,
+        #main-content li code {
+            /* color: var(--gb-aqua); */
+            color: var(--gb-purple);
+        }
+    }
+
+    [data-webtui-theme^="gruvbox-light-"] {
+
+        #main-content p code,
+        #main-content li code {
+            color: var(--gb-red);
+        }
+    }
+
+    /* CATPPUCCIN */
+    [data-webtui-theme|="catppuccin"] {
+        #main-content .alert {
+            --badge-color: var(--maroon);
+            --badge-text: var(--background0);
+        }
+
+        #main-content .caution {
+            --badge-color: var(--pink);
+            --badge-text: var(--background0);
+        }
+
+        #main-content .advice {
+            --badge-color: var(--mauve);
+            --badge-text: var(--background0);
+        }
+    }
+
+    [data-webtui-theme="catppuccin"],
+    [data-webtui-theme="catppuccin-mocha"],
+    [data-webtui-theme="catppuccin-macchiato"],
+    [data-webtui-theme="catppuccin-frappe"] {
+
+        #main-content p code,
+        #main-content li code {
+            color: var(--rosewater);
+        }
+    }
+
+    /* NORD */
+    [data-webtui-theme|="nord"] {
+        #main-content .alert {
+            --badge-color: var(--nord11);
+            --badge-text: var(--background0);
+        }
+
+        #main-content .caution {
+            --badge-color: var(--nord12);
+            --badge-text: var(--background0);
+        }
+
+        #main-content .advice {
+            --badge-color: var(--nord13);
+            --badge-text: var(--background0);
+        }
+
+        #main-content p code,
+        #main-content li code {
+            color: var(--nord13);
+        }
+    }
+
+
+}
+
+table {
+    --table-border-color: var(--background1);
+}
+
+.alert,
+.caution,
+.advice {
+    width: fit-content;
+}
+
+/* FOR TESTING (highlight all text blocks) */
+/* #main-content>* {
+    background-color: var(--background2);
+} */
+
+/* link highlight thing */
+/* #main-content ul li a:hover {
+    background-color: var(--background1);
+} */
+
+/* #main-content ul li a {
+    display: inline-block;
+    width: calc(100% - 2ch);
+} */

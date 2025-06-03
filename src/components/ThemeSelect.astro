@@ -1,0 +1,79 @@
+---
+
+---
+
+<section id="theme-select">
+    <!-- GRUVBOX -->
+    <button class="themes" data-value="gruvbox-dark-soft"
+        >gruvbox-dark-soft</button
+    >
+    <button class="themes" data-value="gruvbox-dark-medium"
+        >gruvbox-dark-medium</button
+    >
+    <button class="themes" data-value="gruvbox-dark-hard"
+        >gruvbox-dark-hard</button
+    >
+    <button class="themes" data-value="gruvbox-light-soft"
+        >gruvbox-light-soft</button
+    >
+    <button class="themes" data-value="gruvbox-light-medium"
+        >gruvbox-light-medium</button
+    >
+    <button class="themes" data-value="gruvbox-light-hard"
+        >gruvbox-light-hard</button
+    >
+    <!-- CATPPUCCIN -->
+    <button class="themes" data-value="catppuccin">catppuccin</button>
+    <button class="themes" data-value="catppuccin-mocha"
+        >catppuccin-mocha</button
+    >
+    <button class="themes" data-value="catppuccin-macchiato"
+        >catppuccin-macchiato</button
+    >
+    <button class="themes" data-value="catppuccin-frappe"
+        >catppuccin-frappe</button
+    >
+    <button class="themes" data-value="catppuccin-latte"
+        >catppuccin-latte</button
+    >
+
+    <!-- NORD -->
+    <button class="themes" data-value="nord">nord</button>
+</section>
+
+<script is:inline>
+    // localStorage.clear();
+
+    const buttons = document.querySelectorAll(".themes");
+    const htmlTag = document.querySelector("html");
+
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+        let themeName = localStorage.getItem("theme");
+        htmlTag.setAttribute("data-webtui-theme", themeName);
+    }
+
+    for (let i of buttons) {
+        i.addEventListener("click", function () {
+            const themeName = i.getAttribute("data-value");
+            htmlTag.setAttribute("data-webtui-theme", themeName);
+            window.localStorage.setItem("theme", themeName);
+        });
+    }
+</script>
+
+<style>
+    #theme-select {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        /* match number of themes */
+        height: 12lh;
+    }
+
+    .themes {
+        /* text color broke at webtui v0.1.1 */
+        color: var(--foreground0);
+        text-align: left;
+        justify-content: flex-start;
+    }
+</style>
