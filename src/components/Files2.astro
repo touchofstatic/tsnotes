@@ -20,7 +20,9 @@
         <br />
         <summary>resources</summary>
         <ul marker-="open tree">
-            <li class="move-dir"><a href="/resources/undefined/">Undefined</a></li>
+            <li class="move-dir">
+                <a href="/resources/undefined/">Undefined</a>
+            </li>
             <li class="move-dir"><a href="/resources/tools/">Tools</a></li>
             <li class="move-dir"><a href="/resources/curios/">Curios</a></li>
         </ul>
@@ -39,6 +41,29 @@
     const files2Close = document.querySelector("aside#files2 .close");
 
     const cols = document.getElementsByClassName("column");
+
+    // files2 button that enables based on window size
+    // eq. Files @media
+    const testQuery = window.matchMedia("(max-width: 70ch)");
+    function testEnable(event) {
+        if (event.matches) {
+            // enabled
+            files2Btn.disabled = false;
+        } else {
+            // disabled
+            files2Btn.disabled = true;
+            // close files2 window
+            files2.classList.add("closed");
+            files2.classList.remove("open");
+            // open columns
+            for (var i = 0; i < cols.length; i++) {
+                cols[i].classList.remove("closed");
+                cols[i].classList.add("open");
+            }
+        }
+    }
+    testQuery.addEventListener("change", testEnable);
+    testEnable(testQuery);
 
     files2Btn.addEventListener("click", () => {
         files2.classList.toggle("closed");
