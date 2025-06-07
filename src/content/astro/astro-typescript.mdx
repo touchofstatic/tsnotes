@@ -1,0 +1,65 @@
+---
+title: 'astro typescript'
+---
+
+> You don’t need to write TypeScript code in your Astro projects to benefit from it. Astro always treats your component code as TypeScript,
+and the Astro VS Code Extension will infer as much as it can to provide autocompletion, hints, and errors in your editor.
+
+> Astro starter projects include a tsconfig.json file in your project. Even if you don’t write TypeScript code, 
+this file is important so that tools like Astro and VS Code know how to understand your project. 
+Some features (like npm package imports) aren’t fully supported in the editor without a tsconfig.json file. 
+If you install Astro manually, be sure to create this file yourself.
+
+## "implicitly has type 'any'"
+
+Solution 1: add `: any` to the problem element
+
+```
+const { headings } = Astro.props;
+---
+headings.map((heading: any) => ()
+```
+
+Solution 2:
+
+tsconfig.json
+```
+"compilerOptions": {
+    "noImplicitAny": false
+```
+
+<span is-="badge" class="alert">ALERT:</span>
+It's recommended to always have `"strict": true`.
+`noImplicitAny` is one of the six strict mode flags.
+You can disable any option that you don’t like from the strict family.
+
+> **The most important flags** are `noImplicitAny` and `strictNullChecks`.
+
+> Because the type `any` basically disables type check, (...)
+by using noImplicitAny, you will only have `any` where you explicitly use it.
+
+## "is possibly 'null'"
+
+[How to Use document.getElementById() method in Typescript | ReactHustle](https://reacthustle.com/blog/typescript-get-element-by-id-tutorial)
+
+Optional-chaining operator `?`:
+
+```
+const menuBtn = document.getElementById("menu-btn");
+const menu = document.getElementById("menu");
+
+menuBtn?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
+});
+```
+
+## "does not exist on type 'HTMLElement'"
+
+> This error occurs because you're trying to access a property of a specific type of HTMLElement but the document.getElementById() returns the most generic type: HTMLElement.
+
+> To fix this error, you can use type assertion by using the `as` operator
+
+```
+    const radio1 = document.getElementById("radio-1") as HTMLInputElement;
+    radio1.checked = true;
+```
