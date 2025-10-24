@@ -1,0 +1,11 @@
+---
+title: 'height struggle zone'
+---
+
+[The Height Enigma • Josh W. Comeau](https://www.joshwcomeau.com/css/height-enigma/)
+
+> in CSS, width and height are fundamentally different. By default, they’re calculated in totally opposite ways. When calculating an element’s default width, the browser looks up the tree, to the element’s parent (take up all available width). But when calculating an element’s default height, well, that depends on the element’s children (shrinkwrap around child). So the browser has to look down the tree instead.
+
+> In order for something like height: 50% to work, the parent’s height can’t depend on the child’s height. We can set this up by giving the parent an explicit height
+
+> When we set display: grid, we create something called a “grid formatting context”. In Grid layout, elements don’t shrinkwrap around their children. Instead, children will grow to fill their grid cell, both horizontally and vertically. By default, grids will have a single row and a single column, and that row is stretched across the entire grid surface. This means that we don’t have to set height: 100%. The child grows automatically. ✨ We can also use Flexbox, though we do have to instruct the child to fill the available space in the primary axis with flex: 1.

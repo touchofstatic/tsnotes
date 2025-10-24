@@ -3,35 +3,48 @@
 ---
 
 <header>
-    <a href="/" is-="badge">Index</a>
-    <button id="view-btn" size-="small">View</button>
-    <button disabled id="files2-btn" size-="small">Files</button>
+  <a
+    href='/'
+    is-='badge'
+    >Index</a
+  >
+  <button
+    id='view-btn'
+    size-='small'
+    >View</button
+  >
+  <button
+    disabled
+    id='files2-btn'
+    size-='small'
+    >Files</button
+  >
 </header>
 
 <style>
-    header {
-        display: flex;
-        background-color: var(--foreground0);
+  header {
+    display: flex;
+    background-color: var(--foreground0);
 
-        a {
-            text-decoration: none;
-        }
-
-        [is-~="badge"]:hover,
-        [is-~="badge"]:focus {
-            --badge-text: var(--foreground0);
-            --badge-color: var(--background2);
-        }
-
-        button:hover,
-        button:focus {
-            --button-primary: var(--background2);
-            --button-secondary: var(--foreground0);
-        }
-
-        #files2-btn:disabled {
-            background-color: var(--foreground2);
-            text-decoration: none;
-        }
+    a {
+      text-decoration: none;
     }
+
+    [is-~='badge']:hover,
+    [is-~='badge']:focus {
+      --badge-text: var(--foreground0);
+      --badge-color: var(--background2);
+    }
+
+    button:hover,
+    button:focus {
+      --button-primary: var(--background2);
+      --button-secondary: var(--foreground0);
+    }
+
+    #files2-btn:disabled {
+      background-color: var(--foreground2);
+      text-decoration: none;
+    }
+  }
 </style>
